@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { RefreshControl } from "react-native";
 import {
   StatusBar,
   Alert,
@@ -44,6 +45,9 @@ export default function App() {
   return (
     <View>
       <FlatList
+        refreshControl={
+          <RefreshControl refreshing={isLoading} onRefresh={fetchPosts} />
+        }
         data={items}
         renderItem={({ item }) => (
           <Post
