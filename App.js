@@ -1,12 +1,21 @@
 import axios from "axios";
 import React from "react";
-import { StatusBar, Alert, View, FlatList } from "react-native";
+import {
+  StatusBar,
+  Alert,
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
 import Post from "./components/Post";
 
 export default function App() {
+  const [isLoading, setIsLoading] = React.useState(false);
   const [items, setItems] = React.useState();
 
-  React.useEffect(() => {
+  const fetchPosts = () => {
+    setIsLoading(true);
     axios
       .get("https://637283b2025414c63711bbb5.mockapi.io/articles")
       .then(({ data }) => {
@@ -15,8 +24,22 @@ export default function App() {
       .catch((err) => {
         console.log(err);
         Alert.alert("Ошибка", "Не удалось получить статьи");
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-  }, []);
+  };
+
+  React.useEffect(fetchPosts, []);
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" />
+        <Text style={{ marginTop: 15 }}>Загрузка...</Text>
+      </View>
+    );
+  }
 
   return (
     <View>
