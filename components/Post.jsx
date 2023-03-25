@@ -22,6 +22,7 @@ const PostTitle = styled.Text`
 `;
 
 const PostDetails = styled.View`
+  flex: 1;
   justify-content: center;
 `;
 
