@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import styled from "styled-components/native";
-import { Image, View } from "react-native";
+import { Text, Image, View } from "react-native";
 import Loading from "../components/Loading";
 
 const PostImage = styled.Image`
@@ -50,11 +50,11 @@ const FullPostScreen = () => {
     <View style={{ padding: 20 }}>
       <PostImage
         source={{
-          uri: data.imageUrl,
+          uri: data?.imageUrl,
         }}
       />
       <PostText>
-       {data.text}
+       {data?.text}
       </PostText>
     </View>
   );

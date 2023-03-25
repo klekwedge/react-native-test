@@ -12,7 +12,7 @@ import {
 import Loading from "../components/Loading";
 import Post from "../components/Post";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [items, setItems] = React.useState();
 
@@ -46,7 +46,7 @@ export default function HomeScreen() {
         }
         data={items}
         renderItem={({ item }) => (
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("FullPost")}>
             <Post
               title={item.title}
               createdAt={item.createdAt}
