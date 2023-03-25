@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
+import Loading from "../components/Loading";
 import Post from "../components/Post";
 
 export default function HomeScreen() {
@@ -34,12 +35,7 @@ export default function HomeScreen() {
   React.useEffect(fetchPosts, []);
 
   if (isLoading) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" />
-        <Text style={{ marginTop: 15 }}>Загрузка...</Text>
-      </View>
-    );
+    return <Loading />;
   }
 
   return (
