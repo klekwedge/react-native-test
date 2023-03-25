@@ -16,14 +16,18 @@ const PostText = styled.Text`
   line-height: 24px;
 `;
 
-const FullPostScreen = () => {
+const FullPostScreen = ({ route, navigation }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [data, setData] = React.useState();
+  const { id, title } = route.params;
 
   const fetchPost = () => {
     setIsLoading(true);
+    navigation.setOptions({
+      title,
+    });
     axios
-      .get("https://637283b2025414c63711bbb5.mockapi.io/articles/1")
+      .get(`https://637283b2025414c63711bbb5.mockapi.io/articles/${id}`)
       .then(({ data }) => {
         setData(data);
       })
@@ -53,9 +57,7 @@ const FullPostScreen = () => {
           uri: data?.imageUrl,
         }}
       />
-      <PostText>
-       {data?.text}
-      </PostText>
+      <PostText>{data?.text}</PostText>
     </View>
   );
 };
