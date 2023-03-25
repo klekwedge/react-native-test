@@ -8,6 +8,7 @@ import {
   Text,
   FlatList,
   ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 import Post from "./components/Post";
 
@@ -50,11 +51,13 @@ export default function App() {
         }
         data={items}
         renderItem={({ item }) => (
-          <Post
-            title={item.title}
-            createdAt={item.createdAt}
-            imageUrl={item.imageUrl}
-          />
+          <TouchableOpacity >
+            <Post
+              title={item.title}
+              createdAt={item.createdAt}
+              imageUrl={item.imageUrl}
+            />
+          </TouchableOpacity>
         )}
       />
       <StatusBar theme="auto" />
